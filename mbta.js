@@ -70,16 +70,60 @@ const stopsBetweenStations = function(StartLine, StartStation, EndLine, EndStati
     }
     //----------------------------------------------------------
   } else if (StartLine != EndLine) {
-    for (let key11 = 0; key11 < MBTA[StartLine].length; key11++) {
+    for (let key11 = 0; key11 < MBTA[EndLine].length; key11++) {
       // console.log(key11);
       for (let key14 = 0; key14 < MBTA[StartLine].length; key14++) {
         // console.log('key14 ', key14);
         if (MBTA[StartLine][key14] === MBTA[EndLine][key11]) {
           console.log("Change the train: " + MBTA[StartLine][key14]);
-          // console.log(key14);
-          // console.log(key11);
 
+          //----------------------------------------------------------
+
+
+          if (MBTA[StartLine].indexOf(StartStation) > key14) {
+
+            let key12 = MBTA[StartLine].indexOf(StartStation);
+            let key13 = key14;
+
+            for (let key1 = key12; key1 >= key13; key1--) {
+              console.log(key1+'- '+ MBTA[StartLine][key1]);
+
+            }
+
+          } else if (MBTA[StartLine].indexOf(StartStation) < key14) {
+
+            let key12 = key14;
+            for (let key1 = 0; key1 < MBTA[StartLine].length; key1++) {
+              if (key1 <= key12) {
+                console.log(key1+'- '+ MBTA[StartLine][key1]);
+
+              }
+            }
+
+          }
+          if (key11 > MBTA[EndLine].indexOf(EndStation)) {
+
+
+            let key12 = key11;
+            let key13 = MBTA[EndLine].indexOf(EndStation);
+
+            for (let key1 = key12; key1 >= key13; key1--) {
+              console.log(key1+'- '+ MBTA[EndLine][key1]);
+
+            }
+
+          } else if (key11 < MBTA[EndLine].indexOf(EndStation)) {
+            let key12 = key11;
+            for (let key1 = 0; key1 <= MBTA[EndLine].indexOf(EndStation); key1++) {
+              if (key1 >= key12) {
+                console.log(key1+'- '+ MBTA[EndLine][key1]);
+
+              }
+            }
+
+          }
         }
+
       }
 
     }
@@ -102,4 +146,4 @@ stopsBetweenStations('Red', 'Alewife', 'Red', 'South Station') // 7 stops
 stopsBetweenStations('Red', 'South Station', 'Red', 'Harvard') // 4 stops
 
 stopsBetweenStations('Red', 'South Station', 'Green', 'Kenmore') // 6 stops
-//stopsBetweenStations('Red', 'South Station', 'Green', 'Copley')
+stopsBetweenStations('Red', 'South Station', 'Green', 'Copley')
